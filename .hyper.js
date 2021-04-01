@@ -137,6 +137,24 @@ module.exports = {
     // rendering (slower, but supports transparent backgrounds)
     webGLRenderer: true,
 
+    paneNavigation: {
+      debug: false,
+      hotkeys: {
+        navigation: {
+          up: 'alt+up',
+          down: 'alt+down',
+          left: 'alt+left',
+          right: 'alt+right'
+        },
+        jump_prefix: 'alt', // completed with 1-9 digits
+        permutation_modifier: 'shift', // Added to jump and navigation hotkeys for pane permutation
+        maximize: 'meta+enter'
+      },
+      showIndicators: false,
+      focusOnMouseHover: false,
+      inactivePaneOpacity: 0.6 // Set to 1 to disable inactive panes dimming
+    },
+
     // for advanced config flags please refer to https://hyper.is/#cfg
   },
 
@@ -150,7 +168,10 @@ module.exports = {
     "hyper-font-ligatures",
     "hyperline",
     "hypercwd",
-    "hyper-dracula"
+    "hyper-dracula",
+    "hyperterm-tabs",
+    "hyper-search",
+    "hyper-pane"
   ],
 
   // in development, you can create a directory under
