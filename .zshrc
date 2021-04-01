@@ -16,7 +16,7 @@ COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="dd.mm.yyyy"
 
 # Load plugins
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting command-time colored-man-pages command-not-found)
+plugins=(git docker sudo zsh-autosuggestions zsh-syntax-highlighting command-time colored-man-pages command-not-found)
 source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
