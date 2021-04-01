@@ -1,0 +1,7 @@
+https://extensions.gnome.org/extension/517/caffeine/
+https://extensions.gnome.org/extension/779/clipboard-indicator/
+https://extensions.gnome.org/extension/1160/dash-to-panel/
+https://extensions.gnome.org/extension/750/openweather/
+https://extensions.gnome.org/extension/708/panel-osd/
+https://extensions.gnome.org/extension/905/refresh-wifi-connections/
+https://extensions.gnome.org/extension/1112/screenshot-tool/
