@@ -33,8 +33,6 @@ POWERLEVEL9K_INSTANT_PROMPT=quiet
 # User aliases
 alias c="clear"
 alias dev="cd ~/Desktop/dev"
-alias python="python3.7"
-alias pip="python3.7 -m pip"
 
 # Color ls
 source $(dirname $(gem which colorls))/tab_complete.sh
@@ -46,5 +44,6 @@ alias ll='colorls --group-directories-first --almost-all --long --dark'
 autoload -U promptinit; promptinit
 
 # OpenVINO
-export PATH=~/intel/openvino/python/python3.7:$PATH
-source /opt/intel/openvino_2021/bin/setupvars.sh -pyver 3.7
+export LD_LIBRARY_PATH=/opt/intel/openvino_2021/deployment_tools/inference_engine/lib/intel64/:$LD_LIBRARY_PATH
+export PATH=~/intel/openvino/python/python3.6:$PATH
+source /opt/intel/openvino_2021/bin/setupvars.sh -pyver 3.6

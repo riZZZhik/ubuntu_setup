@@ -49,13 +49,14 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 # Install PyCharm
 sudo snap install pycharm-professional --classic
 
-# Install Python 3.7
-sudo apt install software-properties-common -y
-sudo add-apt-repository ppa:deadsnakes/ppa -y
-sudo apt install python3.7 -y
+# Install Python 3.6 dependecies
+python3.6 -m pip install torch torchvision onnx
 
 # Copy config
 cp .zshrc ~/.zshrc
+
+# Create default dir
+mkdir ~/Desktop/dev
 
 # Echos
 echo "Install Gnome extensions from gnome_extensions.txt" 
