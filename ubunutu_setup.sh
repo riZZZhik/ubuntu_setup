@@ -5,7 +5,7 @@ sudo apt update -y && sudo apt upgrade -y
 sudo apt-get update -y && sudo apt-get upgrade -y
 
 # Install system commands
-sudo apt install htop git docker
+sudo apt install htop git dockerm curl -y
 
 # Install Telegram
 sudo snap install telegram-desktop
@@ -40,11 +40,13 @@ sudo apt install ruby ruby-dev -y
 gem install colorls -q
 
 https://github.com/dracula/colorls
+mkdir ~/.config/colorls
 cp colorls/dark_colors.yaml ~/.config/colorls/dark_colors.yaml
 rm -rf colorls
 
 # Install fzf
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+sudo ~/.fzf/install
 
 # Install PyCharm
 sudo snap install pycharm-professional --classic
@@ -52,11 +54,21 @@ sudo snap install pycharm-professional --classic
 # Install Python 3.6 dependecies
 python3.6 -m pip install torch torchvision onnx
 
+# Install grub theme and customizer
+wget -O - https://github.com/shvchk/poly-light/raw/master/install.sh | bash
+
+sudo add-apt-repository ppa:danielrichter2007/grub-customizer  
+sudo apt update
+sudo apt install grub-customizer -y
+
 # Copy config
 cp .zshrc ~/.zshrc
 
 # Create default dir
 mkdir ~/Desktop/dev
+
+# Configure p10k theme
+p10k Configure
 
 # Echos
 echo "Install Gnome extensions from gnome_extensions.txt" 
