@@ -16,7 +16,7 @@ COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="dd.mm.yyyy"
 
 # Load plugins
-plugins=(git docker sudo zsh-autosuggestions zsh-syntax-highlighting command-time colored-man-pages command-not-found)
+plugins=(git docker docker-compose sudo zsh-autosuggestions zsh-syntax-highlighting command-time colored-man-pages command-not-found)
 source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -30,9 +30,17 @@ POWERLEVEL9K_INSTANT_PROMPT=quiet
 # Setup fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# setup kubectl autocompletion
+[[ /usr/bin/kubectl ]] && source <(kubectl completion zsh)
+
+# Setup thefuck
+eval $(thefuck --alias)
+
 # User aliases
 alias c="clear"
 alias dev="cd ~/Desktop/dev"
+
+alias k8s="KUBECONFIG=~/Desktop/dev/k8s/kubeconfig kubectl -n default"
 
 # Color ls
 source $(dirname $(gem which colorls))/tab_complete.sh
