@@ -5,7 +5,7 @@ sudo apt update -y && sudo apt upgrade -y
 sudo apt-get update -y && sudo apt-get upgrade -y
 
 # Install system commands
-sudo apt install apt-transport-https ca-certificates htop git dockerm curl -y
+sudo apt install apt-transport-https ca-certificates htop git docker curl -y
 
 # Install kubectl
 sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
@@ -54,11 +54,15 @@ rm -rf colorls
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 sudo ~/.fzf/install
 
+# Install VS Code
+sudo snap install code --classic
+
 # Install PyCharm
 sudo snap install pycharm-professional --classic
 
 # Install Python 3.6 dependecies
-python3.6 -m pip install torch torchvision onnx
+sudo apt install python3-pip python3-dev python3-venv
+python3.6 -m pip install setuptools pip torch torchvision onnx
 
 # Install grub theme and customizer
 wget -O - https://github.com/shvchk/poly-light/raw/master/install.sh | bash
