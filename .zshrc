@@ -16,7 +16,7 @@ COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="dd.mm.yyyy"
 
 # Load plugins
-plugins=(git docker docker-compose sudo zsh-autosuggestions zsh-syntax-highlighting command-time colored-man-pages command-not-found)
+plugins=(git docker docker-compose sudo zsh-autosuggestions zsh-syntax-highlighting command-time colored-man-pages command-not-found kubectl)
 source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -30,17 +30,26 @@ POWERLEVEL9K_INSTANT_PROMPT=quiet
 # Setup fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# setup kubectl autocompletion
-[[ /usr/bin/kubectl ]] && source <(kubectl completion zsh)
+# setup kubectl and terraform autocompletion
+source <(kubectl completion zsh)
+terraform -install-autocomplete
 
 # Setup thefuck
 eval $(thefuck --alias)
 
 # User aliases
 alias c="clear"
+alias -g G="| grep"
 alias dev="cd ~/Desktop/dev"
 
-alias k8s="KUBECONFIG=~/Desktop/dev/k8s/kubeconfig kubectl -n default"
+# Kubernetes aliases
+alias k8s="kubectl -n default"
+alias k8s-get="k8s get pod | grep 'detector\|gate-api-kafka-consumer'"
+alias k8s-reset="k8s delete pod -l pod_type=detector && echo 'Waiting 15 seconds before rollouting consumer' && sleep 15 && k8s rollout restart deploy gate-api-kafka-consumer"
+k8s-push() {
+  docker build -t harbor.sirin.cc/default/detector-plate:$1 ~/Desktop/dev/cars_detector && \
+  docker push harbor.sirin.cc/default/detector-plate:$1
+}
 
 # Color ls
 source $(dirname $(gem which colorls))/tab_complete.sh
@@ -53,5 +62,5 @@ autoload -U promptinit; promptinit
 
 # OpenVINO
 export LD_LIBRARY_PATH=/opt/intel/openvino_2021/deployment_tools/inference_engine/lib/intel64/:$LD_LIBRARY_PATH
-export PATH=~/intel/openvino/python/python3.6:$PATH
-source /opt/intel/openvino_2021/bin/setupvars.sh -pyver 3.6
+export PATH=~/intel/openvino/python/python3.7:$PATH
+source /opt/intel/openvino_2021/bin/setupvars.sh -pyver 3.7
