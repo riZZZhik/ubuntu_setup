@@ -4,8 +4,8 @@ sudo apt-get update
 sudo apt-get install python3.7
 sudo apt install python3-pip python3.7-dev python3.7-venv
 
-# Install PyCharm
-sudo snap install pycharm-professional --classic
+# Install JetBrains toolbox
+wget --show-progress -qO ./toolbox.tar.gz "https://data.services.jetbrains.com/products/download?platform=linux&code=TBA"
 
 # Install VS Code
 sudo snap install code --classic
