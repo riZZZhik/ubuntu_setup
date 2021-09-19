@@ -21,10 +21,10 @@ mkdir ~/Desktop/dev
 p10k Configure
 
 # Save git credentials
-git config credential.helper store
+git config --global credential.helper store
 
 # Echos
 echo "Ubuntu setup by t.me/riZZZhik"
 echo "Install Gnome extensions from gnome_extensions.txt" 
 echo "Install OpenVINO from https://docs.openvinotoolkit.org/latest/openvino_docs_install_guides_installing_openvino_linux.html"
-echo "Install UbuntuMono Nerd Font from https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/UbuntuMono"
+echo "Install UbuntuMono Nerd Font from https://www.nerdfonts.com/font-downloads"
