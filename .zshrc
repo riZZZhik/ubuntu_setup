@@ -30,9 +30,12 @@ POWERLEVEL9K_INSTANT_PROMPT=quiet
 # Setup fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+# Enable autocompletion
+autoload -U promptinit; promptinit
+
 # setup kubectl and terraform autocompletion
 source <(kubectl completion zsh)
-terraform -install-autocomplete
+complete -o nospace -C /usr/bin/terraform terraform
 
 # Setup thefuck
 eval $(thefuck --alias)
@@ -40,25 +43,25 @@ eval $(thefuck --alias)
 # User aliases
 alias c="clear"
 alias -g G="| grep"
+alias -g A="--all-namespaces"
 alias dev="cd ~/Desktop/dev"
 
 # Kubernetes aliases
-alias k8s="kubectl -n default"
-alias k8s-get="k8s get pod | grep 'detector\|gate-api-kafka-consumer'"
-alias k8s-reset="k8s delete pod -l pod_type=detector && echo 'Waiting 15 seconds before rollouting consumer' && sleep 15 && k8s rollout restart deploy gate-api-kafka-consumer"
+alias k8s="kubectl"
+complete -F __start_kubectl k8s
+alias k8s-get="k8s get pod --all-namespaces | grep 'detector\|gate'"
+alias k8s-reset="k8s delete pod --all-namespaces -l pod_type=detector && echo 'Waiting 15 seconds before rollouting consumer' && sleep 15 && k8s rollout restart deploy gate-api-kafka-consumer"
 k8s-push() {
   docker build -t harbor.sirin.cc/default/detector-plate:$1 ~/Desktop/dev/cars_detector && \
   docker push harbor.sirin.cc/default/detector-plate:$1
 }
+source ~/.terraform_envs
 
 # Color ls
 source $(dirname $(gem which colorls))/tab_complete.sh
 alias ls='colorls --group-directories-first --dark'
 alias l='colorls --group-directories-first --almost-all --dark'
 alias ll='colorls --group-directories-first --almost-all --long --dark'
-
-# Do something useful, i think
-autoload -U promptinit; promptinit
 
 # OpenVINO
 export LD_LIBRARY_PATH=/opt/intel/openvino_2021/deployment_tools/inference_engine/lib/intel64/:$LD_LIBRARY_PATH
