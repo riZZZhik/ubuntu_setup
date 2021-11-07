@@ -45,12 +45,17 @@ alias c="clear"
 alias -g G="| grep"
 alias -g A="--all-namespaces"
 alias dev="cd ~/Desktop/dev"
+alias update="sudo apt update && sudo apt upgrade && sudo apt autoremove && sudo apt-get update && sudo apt-get upgrade && sudo apt-get autoremove"
+
+# Docker aliases
+alias docker_clean_images='docker rmi $(docker images -a --filter=dangling=true -q)'
+alias docker_clean_ps='docker rm $(docker ps --filter=status=exited --filter=status=created -q)'
 
 # Kubernetes aliases
 alias k8s="kubectl"
 complete -F __start_kubectl k8s
 alias k8s-get="k8s get pod --all-namespaces | grep 'detector\|gate'"
-alias k8s-reset="k8s delete pod --all-namespaces -l pod_type=detector && echo 'Waiting 15 seconds before rollouting consumer' && sleep 15 && k8s rollout restart deploy gate-api-kafka-consumer"
+alias k8s-reset="k8s delete pod --all-namespaces -l pod_type=detector && echo 'Waiting 15 seconds before rollouting consumer' && sleep 15 && k8s -n default rollout restart deploy gate-api-kafka-consumer"
 k8s-push() {
   docker build -t harbor.sirin.cc/default/detector-plate:$1 ~/Desktop/dev/cars_detector && \
   docker push harbor.sirin.cc/default/detector-plate:$1

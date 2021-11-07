@@ -8,11 +8,6 @@ sudo apt install apt-transport-https ca-certificates htop git docker curl
 # Install Gnome tweaks and extensions
 sudo apt install gnome-tweak-tool chrome-gnome-shell -y
 
-# Install Google Chrome
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg -i --force-depends google-chrome-stable_current_amd64.deb
-rm google-chrome-stable_current_amd64.deb
-
 # Install Telegram
 sudo snap install telegram-desktop
 
